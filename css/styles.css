@@ -71,8 +71,22 @@ ul {
 .menu-link.active {
   color: var(--primary-accent-color);
 }
+
+.active::after {
+  content: '';
+  position: absolute;
+  display: block;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: var(--primary-accent-color);
+  border-radius: 2px;
+}
+
 .menu-link {
   display: block;
+  position: relative;
   padding-top: 32px;
   padding-bottom: 32px;
   color: var(--secondary-text-color);
@@ -95,6 +109,8 @@ ul {
   font-size: 14px;
   line-height: 1.14;
   letter-spacing: 0.02em;
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .contact-link .item {
@@ -112,6 +128,14 @@ ul {
   margin-right: 30px;
 }
 
+.nav {
+  display: flex;
+}
+
+.nav a {
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .nav a:hover,
 .nav a:focus {
   color: var(--primary-accent-color);
@@ -121,9 +145,6 @@ ul {
   margin-right: 50px;
 }
 
-.nav {
-  display: flex;
-}
 /* Секція */
 
 .section {
@@ -136,7 +157,7 @@ ul {
 .hero {
   margin: 0 auto;
   background-image: linear-gradient(to right, rgba(47, 48, 58, 0.8), rgba(47, 48, 58, 0.8)),
-  url("../images/hero.jpg");
+    url('../images/hero.jpg');
   background-size: cover;
   max-width: 1600px;
   height: 600px;
@@ -167,7 +188,7 @@ ul {
 }
 /* Переваги */
 
-.section-advantages{
+.section-advantages {
   padding-top: 94px;
 }
 
@@ -199,7 +220,7 @@ ul {
 }
 
 .advantages-box svg {
-margin: auto;
+  margin: auto;
 }
 
 .advantages p {
@@ -214,6 +235,7 @@ margin: auto;
 }
 
 .work {
+  display: flex;
   font-weight: 700;
   line-height: 1.14;
 }
@@ -222,12 +244,29 @@ margin: auto;
   color: var(--secondary-accent-color);
 }
 
-.work {
-  display: flex;
+.work .item {
+  position: relative;
+}
+
+.work .item img {
+  display: block;
 }
 
 .work .item:not(:last-child) {
   margin-right: 30px;
+}
+
+.work-text {
+  display: flex;
+  position: absolute;
+  width: 100%;
+  height: 70px;
+  bottom: 0px;
+  background-color: rgba(47, 48, 58, 0.8);
+}
+
+.work-text h3 {
+  margin: auto;
 }
 
 /* Наша команда */
@@ -235,7 +274,7 @@ margin: auto;
 .section-team {
   padding-top: 94px;
   padding-bottom: 94px;
-  background-color: #F5F4FA;
+  background-color: #f5f4fa;
 }
 
 .team-title {
@@ -294,7 +333,10 @@ margin: auto;
   height: 44px;
   background-color: transparent;
   border-radius: 50%;
-  color: #AFB1B8;
+  color: #afb1b8;
+
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .social-link .icon {
@@ -326,8 +368,10 @@ margin: auto;
   height: 90px;
   border: 1px solid currentColor;
   border-radius: 4px;
-  color: #AFB1B8;
+  color: #afb1b8;
   fill: currentColor;
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .client-logo {
@@ -336,7 +380,7 @@ margin: auto;
 
 .client-link:hover,
 .client-link:focus {
-  color: #2196F3;
+  color: #2196f3;
 }
 
 .title {
@@ -374,6 +418,9 @@ margin: auto;
   font-weight: 500;
   font-size: 16px;
   line-height: 1.62;
+
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .filter-list .item:not(:last-child) {
@@ -415,19 +462,42 @@ margin: auto;
 }
 
 .portfolio-img {
-  margin-bottom: 20px;
+  display: block;
 }
 
 .portfolio-box {
-  border: 1px solid #EEEEEE;
+  border: 1px solid #eeeeee;
   cursor: pointer;
+
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .portfolio-box:hover,
 .portfolio-box:focus {
-  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12),
-  0px 4px 4px rgba(0, 0, 0, 0.06),
-  1px 4px 6px rgba(0, 0, 0, 0.16);
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
+    1px 4px 6px rgba(0, 0, 0, 0.16);
+}
+
+.portfolio-thumb {
+  position: relative;
+  overflow: hidden;
+}
+
+.portfolio-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding-top: 63px;
+  top: 0;
+  left: 0;
+  background-color: var(--primary-accent-color);
+  color: #fff;
+  transform: translateY(100%);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.portfolio-box:hover .portfolio-overlay {
+  transform: translateY(0);
 }
 
 .filter-element {
@@ -443,10 +513,15 @@ margin: auto;
   line-height: 1.56;
 }
 
+.portfolio-box h3 {
+  margin-top: 20px;
+}
+
 .portfolio-box h3,
 .filter-element,
 .card-text {
   padding-left: 24px;
+  padding-right: 24px;
 }
 
 /* Футер */
@@ -509,9 +584,12 @@ footer {
   display: flex;
   width: 44px;
   height: 44px;
-  fill: #fff;
   border-radius: 50%;
+
+  fill: #fff;
   background-color: rgba(255, 255, 255, 0.1);
+
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .footer-social-link .icon {
@@ -534,7 +612,7 @@ footer {
 
 .subscribe-button .align-items {
   margin-left: 10px;
-  vertical-align:middle;
+  vertical-align: middle;
 }
 
 .list {
@@ -545,3 +623,83 @@ a {
   text-decoration: none;
 }
 
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(0, 0, 0, 0.2);
+
+  opacity: 1;
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.backdrop.is-hidden {
+  /* visibility: hidden; */
+  opacity: 0;
+  pointer-events: none;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) translateX(0);
+
+  width: 528px;
+  height: 581px;
+  background-color: #fff;
+  border-radius: 4px;
+  text-align: center;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) translateX(200%);
+}
+
+.modal h2 {
+  margin-top: 40px;
+  margin-bottom: 30px;
+
+  color: #212121;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 23px;
+  letter-spacing: 0.03em;
+}
+
+.modal-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+
+  display: flex;
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  background-color: #fff;
+
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-button:hover,
+.modal-button:focus {
+  fill: var(--primary-accent-color);
+}
+
+.send.button {
+  display: block;
+  margin: auto;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.87;
+  letter-spacing: 0.06em;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+}
